@@ -14,7 +14,7 @@ Run the following command to get know the options
 
 > python challenge.py --help | -h
 
-Or run one of the following to use defaults settings:
+Or run the following to use defaults settings:
 
  > python challenge.py (--input=file| -i=file)
 
