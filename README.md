@@ -16,7 +16,10 @@ Run the following command to get know the options
 
 Or run the following to use defaults settings:
 
- > python challenge.py (--input=file| -i=file)
+ > python challenge.py (--input=filename | -i=filename)
+
+ default settings : > window=10 && Output= test.txt
+ 
 
 
 

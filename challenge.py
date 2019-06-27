@@ -25,7 +25,7 @@ def readInput(file):
         iptData=[json.loads(line) for line in ifile]
     return iptData
 
-#Writes teh data into the JSON file
+#Writes the data into the JSON file
 def writeOutput(optData, file):
     with open (file,'w') as outfile:
         json.dump(optData,outfile)
@@ -38,35 +38,47 @@ def convertTime (iptData):
     return iptData
 
 def calculateMovingAverage(iptData,timeWindow,topLimit):
+
     tempList=[]
+    #For every entry in the data check if the entry is inside the time window, if so append the duration of the data transmission to a temporary list
     for i in iptData:
         if i['timestamp']>topLimit-timedelta(minutes=timeWindow) and i['timestamp']<=topLimit:
             tempList.append(i["duration"])
     
-    if not tempList:
+    #Check if the list is empty, this should be the case for the first minute.
+    if len(tempList)==0:
         return 0
+
+    #Simple moving average, is the sum of the durations divided by the number of entries
     average=sum(tempList)/len(tempList)
     return average
 
 def challenge(arguments):
 
+    #Data treatment operations
     iptData=readInput(arguments["--input"])
     iptData=convertTime(iptData)
     
+    #Finds the minimum data from the collection, this marks the start of the cycle to calculate the Moving Average
     minDates=min([i['timestamp'] for i in iptData]) 
-    # maxDates=max([i['timestamp'] for i in iptData]) +timedelta(minutes=1) #Increase the value by 1 so it counts the last minute
+
+
     #Maximum Date should be the minimum date present on the input plus the window.
     maxDates=minDates+timedelta(minutes=int(arguments["--window"]))
-    
+   
     outData=[]
-	#Loop through the timespan and for each minute and calculate the averages
+
+	#Set the seconds and microsenconds to zero in order to count the MA for a full lenght of a minute
     date= minDates.replace(second=0, microsecond=0)
+    
+    #Go through the dates starting with the lowest one till the highest one.
     while date <= maxDates:
     	avg = calculateMovingAverage(iptData, int(arguments["--window"]), date)
     	outData.append({"date": date.strftime('%Y-%m-%d %H:%M:%S'), "average_delivery_time":'%g'%(avg)})
     	date += timedelta(minutes=1)
 
     # print(outData)
+    #Print data to the exit file
     writeOutput(outData,arguments["--output"])
 
 if __name__ == "__main__":
