@@ -5,6 +5,7 @@
 __Libraries Needed__
 
 >pip install json
+
 >pip install docopt
  
 __Execution__
@@ -15,11 +16,12 @@ challenge.py --help | -h
 
 Or run one of the following to use defaults settings:
 
- challenge.py (--input=<file>| -i=<file>)
+ challenge.py (--input=file| -i=file)
 
 
 
 ##Challenge description
+
 Welcome to our Engineering Challenge repository 🖖
 
 If you found this repository it probably means that you are participating in our recruitment process. Thank you for your time and energy. If that's not the case please take a look at our [openings](https://unbabel.com/careers/) and apply!
