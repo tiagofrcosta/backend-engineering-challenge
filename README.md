@@ -20,7 +20,7 @@ Or run one of the following to use defaults settings:
 
 
 
-##Challenge description
+## Challenge description
 
 Welcome to our Engineering Challenge repository 🖖
 
