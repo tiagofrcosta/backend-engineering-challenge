@@ -12,11 +12,11 @@ __Execution__
 
 Run the following command to get know the options
 
-challenge.py --help | -h
+> python challenge.py --help | -h
 
 Or run one of the following to use defaults settings:
 
- challenge.py (--input=file| -i=file)
+ > python challenge.py (--input=file| -i=file)
 
 
 
